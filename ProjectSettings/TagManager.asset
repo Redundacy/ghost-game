@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: bg0
+    uniqueID: 536593281
+    locked: 0
+  - name: bg1
+    uniqueID: 2690067769
+    locked: 0
+  - name: environment
+    uniqueID: 3961468959
+    locked: 0
+  - name: character
+    uniqueID: 287387141
+    locked: 0
+  - name: fg
+    uniqueID: 2496397049
+    locked: 0

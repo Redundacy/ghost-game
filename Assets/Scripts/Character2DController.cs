@@ -16,7 +16,7 @@ public class Character2DController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         var movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
+        rb.velocity = new Vector2(movement * Time.deltaTime * MovementSpeed, rb.velocity.y);
         
 
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.001f) {

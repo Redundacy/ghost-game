@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character2DController : MonoBehaviour {
+public class LadderClutchCC : MonoBehaviour {
     public float MovementSpeed = 1;
     public float JumpForce = 1;
     public float climbSpeed = 2f;
     public float distance;
+    bool isGrounded = false;
+    public Transform isGroundedChecker;
+    public float checkGroundRadius;
+    public LayerMask groundLayer;
     public LayerMask whatIsLadder;
 
     private Rigidbody2D _rb;
@@ -20,6 +24,7 @@ public class Character2DController : MonoBehaviour {
     }
 
     void Update() {
+        CheckIfGrounded();
     }
 
     // Update is called once per frame, fixed for physics or whatever
@@ -30,7 +35,7 @@ public class Character2DController : MonoBehaviour {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
 
         if (hitInfo.collider != null) {
-            if (Input.GetKeyDown(KeyCode.UpArrow)) { // We should probably add some sort of grab/clutch button so we can add in some nice rolling ladders
+            if (Input.GetKey(KeyCode.G)) { // We should probably add some sort of grab/clutch button so we can add in some nice rolling ladders
                 isClimbing = true;
             }
         }
@@ -47,12 +52,28 @@ public class Character2DController : MonoBehaviour {
             _rb.gravityScale = 1;
         }
 
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(_rb.velocity.y) < 0.001f) {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            _rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && isClimbing) {
+            isClimbing = false;
+            _rb.gravityScale = 1;
             _rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
         }
     }
 
     // this happens when the object this is attached to collides with something else
     private void OnTriggerStay2D(Collider2D collision) {
+    }
+
+    void CheckIfGrounded()
+    {
+        Collider2D collider = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
+
+        if (collider != null) {
+            isGrounded = true;
+        } else {
+            isGrounded = false;
+        }
     }
 }

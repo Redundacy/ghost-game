@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class platformer : MonoBehaviour
@@ -27,11 +28,21 @@ public class platformer : MonoBehaviour
         Jump();
         CheckIfGrounded();
     }
+
+    void FixedUpdate() {
+    }
+
     // horizontal movement function
     void Move(){
         float x = Input.GetAxisRaw("Horizontal");
         float moveBy = x * speed;
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
+        if (x < 0) {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (x > 0) {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
     // jump function
     void Jump(){
@@ -44,9 +55,9 @@ public class platformer : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
     
         if (collider != null) {
-        isGrounded = true;
+            isGrounded = true;
         } else {
-        isGrounded = false;
+            isGrounded = false;
         }
     }
 

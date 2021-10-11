@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Caleb Rosenboom
+//made using  https://craftgames.co/unity-2d-platformer-movement/ and https://www.youtube.com/watch?v=QGDeafTx5ug
 public class PlayerController : MonoBehaviour
 {
-    public float PlayerSpeed;
-    public float JumpForce;
+    public float speed;
+    public float jumpForce;
     public float PlayerMovement;
 
     private Rigidbody2D rb;
     private bool facingRight = true;
-
+    //
     private bool isGrounded;
-    public Transform groundCheck;
-    public float checkRadius;
+    public Transform IsGroundChecker;
+    public float GroundCheckRadius;
     public LayerMask whatIsGround;
 
     private int extraJumps;
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     //Controls player movement
    void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, GroundCheckRadius, whatIsGround);
         PlayerMovement = Input.GetAxisRaw("Horizontal");
         Debug.Log(PlayerMovement);
         rb.velocity = new Vector2(PlayerMovement * PlayerSpeed, rb.velocity.y);

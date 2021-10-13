@@ -31,22 +31,30 @@ public class LadderClutchCC : MonoBehaviour {
     void FixedUpdate() {
         inputHorizontal = Input.GetAxis("Horizontal");
         _rb.velocity = new Vector2(inputHorizontal * Time.deltaTime * MovementSpeed, _rb.velocity.y);
-
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
+        Rigidbody2D ladder;
 
         if (hitInfo.collider != null) {
-            if (Input.GetKey(KeyCode.G)) { // We should probably add some sort of grab/clutch button so we can add in some nice rolling ladders
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)) {
                 isClimbing = true;
             }
+            ladder = hitInfo.transform.GetComponent<Rigidbody2D>();
         }
         else {
             isClimbing = false;
+            ladder = null;
         }
 
         if (isClimbing) {
             inputVertical = Input.GetAxisRaw("Vertical");
             _rb.velocity = new Vector2(_rb.velocity.x, inputVertical * climbSpeed);
             _rb.gravityScale = 0;
+            if (hitInfo.transform.GetComponent<LadderHandler>().MovingLadder) {
+                ladder.transform.position = new Vector3(Mathf.Clamp(_rb.position.x,
+                    hitInfo.transform.GetComponent<LadderHandler>().LadderBoundsLeft,
+                    hitInfo.transform.GetComponent<LadderHandler>().LadderBoundsRight), 
+                    ladder.transform.position.y, ladder.transform.position.z);
+            }
         }
         else {
             _rb.gravityScale = 1;

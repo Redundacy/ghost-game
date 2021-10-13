@@ -5,12 +5,14 @@ using UnityEngine;
 public class platformer : MonoBehaviour
 {
     // Robert Spatz
+    // Eric Dundas
     // created following https://craftgames.co/unity-2d-platformer-movement/
-
+    
     public float speed;
-    Rigidbody2D rb;
+    Rigidbody2D rb; 
     public float jumpForce;
-    bool isGrounded = false;
+    public int jumps;
+    private int jumpsLeft;
     public Transform isGroundedChecker;
     public float checkGroundRadius;
     public LayerMask groundLayer;
@@ -18,6 +20,7 @@ public class platformer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        jumpsLeft = jumps;
     }
 
     // Update is called once per frame
@@ -32,11 +35,18 @@ public class platformer : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float moveBy = x * speed;
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
+        if (x < 0) {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (x > 0) {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
     // jump function
     void Jump(){
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+        if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft>0){
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpsLeft--;
         }
     }
     // checks if the player is grounded
@@ -44,9 +54,7 @@ public class platformer : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
     
         if (collider != null) {
-        isGrounded = true;
-        } else {
-        isGrounded = false;
+        jumpsLeft = jumps;
         }
     }
 

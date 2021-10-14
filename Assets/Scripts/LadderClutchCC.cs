@@ -30,7 +30,7 @@ public class LadderClutchCC : MonoBehaviour {
     // Update is called once per frame, fixed for physics or whatever
     void FixedUpdate() {
         inputHorizontal = Input.GetAxis("Horizontal");
-        _rb.velocity = new Vector2(inputHorizontal * Time.deltaTime * MovementSpeed, _rb.velocity.y);
+        _rb.velocity = new Vector2(inputHorizontal * MovementSpeed, _rb.velocity.y);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
         Rigidbody2D ladder;
 

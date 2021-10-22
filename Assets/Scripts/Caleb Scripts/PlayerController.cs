@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         groundCheck();
         jumpImprovement();
     }
+
     //Controls player movement
     void Move()
     {
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
         }
+    //controls the short jump
         else if (_rb.velocity.y > 0 && Input.GetButton("Jump"))
         {
             _rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;

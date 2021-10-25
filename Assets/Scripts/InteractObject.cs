@@ -10,4 +10,8 @@ public class InteractObject : MonoBehaviour
         gameObject.SetActive (false);
     }
 
+    public void DoPossession() {
+        gameObject.SetActive(false);
+    }
+
 }

@@ -37,8 +37,8 @@ public class PlayerControllerwithLadder : MonoBehaviour
     void Update(){
         Move();
         Jump();
-        groundCheck();
-        jumpImprovement();
+        GroundCheck();
+        JumpImprovement();
         Climb();
     }
 
@@ -90,7 +90,7 @@ public class PlayerControllerwithLadder : MonoBehaviour
         //Controls jumping
         void Jump()
         {
-            if (isGrounded = true)
+            if (isGrounded == true)
             {
                 extraJumps = extraJumpsValue;
             }
@@ -107,7 +107,7 @@ public class PlayerControllerwithLadder : MonoBehaviour
         }
 
         //checks if player is Grounded
-        void groundCheck()
+        void GroundCheck()
         {
             Collider2D collider = Physics2D.OverlapCircle(isGroundedCheck.position, checkGroundRadius, groundLayer);
             if (collider != null)
@@ -115,7 +115,7 @@ public class PlayerControllerwithLadder : MonoBehaviour
                 isGrounded = true;
             }
             else {
-                if (isGrounded = true){
+                if (isGrounded == true){
                     lastTimeGrounded = Time.time;
                 }
                 isGrounded = false;
@@ -123,7 +123,7 @@ public class PlayerControllerwithLadder : MonoBehaviour
         }
 
         //This improves the feeling of jump
-        void jumpImprovement()
+        void JumpImprovement()
         {
             if (rb.velocity.y < 0)
             {

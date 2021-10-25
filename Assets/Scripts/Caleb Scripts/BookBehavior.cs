@@ -5,7 +5,7 @@ using UnityEngine;
 public class BookBehavior : MonoBehaviour
 {
     public float speed = 4.5f;
-    private RigidBody2D _rb;
+    private Rigidbody2D _rb;
     public LayerMask groundLayer;
     public float platformTime;
     // Update is called once per frame
@@ -15,11 +15,11 @@ public class BookBehavior : MonoBehaviour
     }
     private void Throwing()
     {
-        transform.position += -tranform.right * Time.deltaTime * speed;
+        transform.position += -transform.right * Time.deltaTime * speed;
         platformTime = 6;
     }
 
-    private void OnCollisionEnter2D(Collision 2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
     }

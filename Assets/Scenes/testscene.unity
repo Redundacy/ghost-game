@@ -376,7 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 78351702}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: interactChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 90768474}
   - component: {fileID: 90768480}
   - component: {fileID: 90768481}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,6 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInterObj: {fileID: 0}
+  PossessedObject: {fileID: 0}
 --- !u!213 &269288078
 Sprite:
   m_ObjectHideFlags: 0
@@ -1390,7 +1391,7 @@ GameObject:
   - component: {fileID: 830203720}
   - component: {fileID: 830203719}
   - component: {fileID: 830203718}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2139,7 +2140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1649367173}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

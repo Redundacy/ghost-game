@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScreenTransition : MonoBehaviour {
     public GameObject MainCamera;
-    public RoomData From;
     public RoomData To;
     public bool UpDown;
 
@@ -20,15 +19,13 @@ public class ScreenTransition : MonoBehaviour {
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision) {
+    void OnTriggerStay2D(Collider2D collision) {
         if (collision.tag == "Player") {
             if (UpDown) {
-                MainCamera.GetComponent<CameraHandler>().CurrentRoom =
-                    collision.attachedRigidbody.velocity.y > 0 ? To : From;
-                collision.attachedRigidbody.velocity = new Vector2(collision.attachedRigidbody.velocity.x, collision.attachedRigidbody.velocity.y + 2);
+                MainCamera.GetComponent<CameraHandler>().CurrentRoom = To;
             }
             else {
-                MainCamera.GetComponent<CameraHandler>().CurrentRoom = Input.GetAxisRaw("Horizontal") > 0 ? To : From;
+                MainCamera.GetComponent<CameraHandler>().CurrentRoom = To;
             }
         }
     }

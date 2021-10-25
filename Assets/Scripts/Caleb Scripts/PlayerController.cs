@@ -9,14 +9,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 10;
     public float inputHorizontal;
 
-
     public float jumpForce = 5.5f;
     private int extraJumps;
     public int extraJumpsValue = 1;
     public float fallMultiplier = 1.25f;
     public float lowJumpMultiplier = 0.5f;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
     public float rememberGroundedFor = 0.1f;
     float lastTimeGrounded;
     private bool facingRight = true;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         extraJumps = extraJumpsValue;
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -39,11 +38,12 @@ public class PlayerController : MonoBehaviour
         groundCheck();
         jumpImprovement();
     }
+
     //Controls player movement
     void Move()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(inputHorizontal * speed, rb.velocity.y);
+        _rb.velocity = new Vector2(inputHorizontal * speed, _rb.velocity.y);
         if (facingRight == false && inputHorizontal > 0)
         {
             Flip();
@@ -73,8 +73,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && (isGrounded || Time.time -lastTimeGrounded <= rememberGroundedFor || extraJumps > 0))
 
         {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             extraJumps--;
+        }
+        else if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor) && extraJumps == 0)
+        {
+            _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
 
@@ -99,13 +103,14 @@ public class PlayerController : MonoBehaviour
     //This improves the feeling of jump
     void jumpImprovement()
     {
-        if (rb.velocity.y < 0)
+        if (_rb.velocity.y < 0)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
+            _rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && Input.GetButton("Jump"))
+    //controls the short jump
+        else if (_rb.velocity.y > 0 && Input.GetButton("Jump"))
         {
-            rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
+            _rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 }

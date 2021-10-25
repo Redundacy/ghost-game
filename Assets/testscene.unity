@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 90768475}
   - component: {fileID: 90768474}
   - component: {fileID: 90768480}
+  - component: {fileID: 90768481}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -589,6 +590,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.005908966, y: 0}
   m_Size: {x: 1.302732, y: 2}
   m_Direction: 0
+--- !u!114 &90768481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90768473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941dcb62c47ad294f9634fb095ee543d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentInterObj: {fileID: 0}
 --- !u!213 &269288078
 Sprite:
   m_ObjectHideFlags: 0
@@ -1946,11 +1960,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1296997250}
   - component: {fileID: 1296997249}
-  - component: {fileID: 1296997251}
   - component: {fileID: 1296997248}
+  - component: {fileID: 1296997251}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: InteractableObject
+  m_TagString: InterObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2045,7 +2059,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296997247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946c5c1469b7fa146af670f9af9c1c2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fa130fd27e377c4bbfaec360841c5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1403207372

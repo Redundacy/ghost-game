@@ -49,22 +49,6 @@ public class interactPlayer : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == ("InterObject")) {
-            Debug.Log(collision.collider.name);
-            currentInterObj = collision.collider.gameObject;
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-        }
-    }
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == ("InterObject")) {
-            Debug.Log(collision.collider.name);
-            currentInterObj = collision.collider.gameObject;
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("InterObject")){
             Debug.Log (other.name);

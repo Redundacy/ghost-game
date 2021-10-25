@@ -4,18 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ladder
+  - InterObject
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
   - 
-  - Ladder
+  - 
   - Ground
-  - Ladder
   - 
   - 
   - 
@@ -38,6 +37,7 @@ TagManager:
   - 
   - 
   - 
+  - Ground
   m_SortingLayers:
   - name: Default
     uniqueID: 0

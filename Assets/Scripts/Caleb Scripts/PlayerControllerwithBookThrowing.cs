@@ -22,6 +22,9 @@ public class PlayerControllerwithBookThrowing : MonoBehaviour
     public float checkGroundRadius = 0.25f;
     public LayerMask groundLayer;
 
+    public BookBehavior BookPrefab;
+    public Transform LaunchOffset;
+
     //Start called before first update
     void Start()
     {
@@ -35,7 +38,18 @@ public class PlayerControllerwithBookThrowing : MonoBehaviour
         Jump();
         groundCheck();
         jumpImprovement();
+        Throw();
     }
+    
+    //Controls Throwing of Book Platform
+    private void Throw()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(BookPrefab, LaunchOffset.position, transform.rotation);
+        }
+    }
+
     //Controls player movement
     void Move()
     {
@@ -51,13 +65,11 @@ public class PlayerControllerwithBookThrowing : MonoBehaviour
         }
     }
 
-    //Flips character
+    //Make sure to change this so throwingPoint faces the right way
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        transform.Rotate(0f, 180f, 0f);
     }
 
     //Controls jumping

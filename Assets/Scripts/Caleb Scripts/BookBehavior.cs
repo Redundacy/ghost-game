@@ -5,24 +5,20 @@ using UnityEngine;
 public class BookBehavior : MonoBehaviour
 {
     public float speed = 4.5f;
-    private Rigidbody2D _rb;
-    public LayerMask groundLayer;
     public float platformTime;
-    // Update is called once per frame
-    void Start()
+
+    void Update()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        Throwing();
+        Timer();
     }
+   
     private void Throwing()
     {
-        transform.position += -transform.right * Time.deltaTime * speed;
-        platformTime = 6;
+        transform.position += transform.right * Time.deltaTime * speed;
+        platformTime = 4;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
-    }
 
     private void Timer()
     {

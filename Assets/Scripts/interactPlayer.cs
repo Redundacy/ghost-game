@@ -10,6 +10,8 @@ public class interactPlayer : MonoBehaviour
 
     // the object you can interact with
     public GameObject currentInterObj = null;
+
+    public GameObject PossessedObject = null;
     // number in int changes based on what you possess
     private int player;
 
@@ -34,8 +36,16 @@ public class interactPlayer : MonoBehaviour
         }
     }
     void possess(){
-        if(Input.GetButtonDown ("Possess") && currentInterObj){
-            
+        if (Input.GetButtonDown("Possess") && PossessedObject != null) {
+            PossessedObject.SetActive(true);
+            PossessedObject.transform.position = transform.position;
+            PossessedObject = null;
+        }
+
+        if (Input.GetButtonDown ("Possess") && currentInterObj && PossessedObject == null) {
+            PossessedObject = currentInterObj;
+            PossessedObject.SendMessage("DoPossession");
+            // GetComponent<Animator>().Play();
         }
     }
 

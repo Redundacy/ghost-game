@@ -5,32 +5,50 @@ using UnityEngine;
 public class BookBehavior : MonoBehaviour
 {
     public float speed = 4.5f;
-    private Rigidbody2D _rb;
-    public LayerMask groundLayer;
     public float platformTime;
-    // Update is called once per frame
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
+    public float maxDistance;
+    private Vector3 startingPosition;
+    private bool thrown = false;
+    private bool falling = false;
+
+    void Start() {
+        IEnumerator coroutine = Timer();
+        StartCoroutine(coroutine);
+        startingPosition = transform.position;
     }
+
+    void Update()
+    {
+        Throwing();
+    }
+   
     private void Throwing()
     {
-        transform.position += -transform.right * Time.deltaTime * speed;
-        platformTime = 6;
+        if (Mathf.Abs(transform.position.x - startingPosition.x) <= maxDistance) {
+            transform.position += transform.right * Time.deltaTime * speed;
+            if (!thrown) {
+                thrown = true;
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+            }
+        }
+        else {
+            if (!falling) {
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+        }
+        
+        // platformTime = 4;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
+
+    private IEnumerator Timer() {
+        yield return new WaitForSeconds(platformTime);
+        falling = true;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
-    private void Timer()
-    {
-        if(platformTime > 0)
-        {
-            platformTime -= Time.deltaTime;
-        }else
-        {
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.layer == 8) {
             Destroy(gameObject);
         }
     }

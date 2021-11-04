@@ -20,9 +20,10 @@ public class PressurePlate : MonoBehaviour {
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        GetComponent<SpriteRenderer>().sprite = Pressed;
+            GetComponent<SpriteRenderer>().sprite = Pressed;
+            // Debug.Log("the collider is: " + collision.name);
     }
     void OnTriggerExit2D(Collider2D collision)
     {

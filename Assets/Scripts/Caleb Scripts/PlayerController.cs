@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 //Caleb Rosenboom, Eric Dundas, Robert Spatz
 //Consolidated by Caleb Rosenboom
-//made using  https://craftgames.co/unity-2d-platformer-movement/ and https://www.youtube.com/watch?v=QGDeafTx5ug
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10;
@@ -24,6 +23,15 @@ public class PlayerController : MonoBehaviour
     public float checkGroundRadius = 0.25f;
     public LayerMask groundLayer;
 
+    public BookBehavior BookPrefab;
+    public Transform LaunchOffset;
+
+    public LayerMask whatIsLadder;
+    private float inputVertical;
+    private bool isClimbing;
+    public float climbSpeed = 2f;
+    public float distance;
+
     //Start called before first update
     void Start()
     {
@@ -37,6 +45,17 @@ public class PlayerController : MonoBehaviour
         Jump();
         groundCheck();
         jumpImprovement();
+        Throw();
+        Climb();
+    }
+   
+    //Controls Throwing of Book Platform
+    private void Throw()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(BookPrefab, LaunchOffset.position, transform.rotation);
+        }
     }
 
     //Controls player movement
@@ -54,13 +73,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Flips character
+    //Character Flipping Left or Right Based on Input
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        transform.Rotate(0f, 180f, 0f);
     }
 
     //Controls jumping
@@ -70,7 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             extraJumps = extraJumpsValue;
         }
-        if (Input.GetButtonDown("Jump") && (isGrounded || Time.time -lastTimeGrounded <= rememberGroundedFor || extraJumps > 0))
+        if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || extraJumps > 0))
 
         {
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -82,7 +99,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //checks if player is Grounded
+    //Checks if the player is grounded
     void groundCheck()
     {
         Collider2D collider = Physics2D.OverlapCircle(isGroundedCheck.position, checkGroundRadius, groundLayer);
@@ -107,10 +124,57 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
         }
-    //controls the short jump
         else if (_rb.velocity.y > 0 && Input.GetButton("Jump"))
         {
             _rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+    }
+
+    //Controls Ladder Climbing
+    void Climb()
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
+        Rigidbody2D ladder;
+
+        if (hitInfo.collider != null)
+        {
+            if (Input.GetButtonDown("Vertical"))
+            {
+                isClimbing = true; 
+            }
+            ladder = hitInfo.transform.GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            isClimbing = false;
+            ladder = null;
+        }
+
+        if (isClimbing)
+        {
+            inputVertical = Input.GetAxisRaw("Vertical");
+            _rb.velocity = new Vector2(_rb.velocity.x, inputVertical * climbSpeed);
+            _rb.gravityScale = 0;
+            if (hitInfo.transform.GetComponent<LadderHandler>().MovingLadder)
+            {
+                ladder.transform.position = new Vector3(Mathf.Clamp(_rb.position.x,
+                    hitInfo.transform.GetComponent<LadderHandler>().LadderBoundsLeft,
+                    hitInfo.transform.GetComponent<LadderHandler>().LadderBoundsRight),
+                    ladder.transform.position.y, ladder.transform.position.z);
+            }
+        }
+        else
+        {
+            _rb.gravityScale = 1;
+        }
+        if (Input.GetButtonDown("Jump") && isClimbing)
+        {
+            isClimbing = false;
+            _rb.gravityScale = 1;
+            Jump();
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
     }
 }

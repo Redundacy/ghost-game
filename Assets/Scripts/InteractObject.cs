@@ -11,7 +11,7 @@ public class InteractObject : MonoBehaviour
     }
 
     public void DoPossession() {
-        gameObject.SetActive(false);
+        gameObject.SetActive (false);
     }
 
 }

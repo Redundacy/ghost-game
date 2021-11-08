@@ -36,7 +36,6 @@ public class BookBehavior : MonoBehaviour
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
-        
         // platformTime = 4;
     }
 
@@ -45,6 +44,7 @@ public class BookBehavior : MonoBehaviour
         yield return new WaitForSeconds(platformTime);
         falling = true;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {

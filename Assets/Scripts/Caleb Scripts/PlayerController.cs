@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
     //Controls jumping
     void Jump()
     {
-        if (isGrounded)
+        if (isGrounded || isClimbing)
         {
             extraJumps = extraJumpsValue;
         }
-        if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || extraJumps > 0))
+        if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || extraJumps > 0 || isClimbing))
 
         {
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -169,9 +169,9 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && isClimbing)
         {
+            Jump();
             isClimbing = false;
             _rb.gravityScale = 1;
-            Jump();
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

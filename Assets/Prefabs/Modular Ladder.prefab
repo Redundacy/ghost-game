@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5097633546870472348}
   - component: {fileID: 5097633546870472347}
   - component: {fileID: 5097633546870472346}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Modular Ladder
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5097633547007060584}
   - component: {fileID: 5097633547007060585}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Ladder Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,8 +167,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1604899527
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 55a5ea26599a54b4c8101091b41b877b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -191,7 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5097633547395024117}
   - component: {fileID: 5097633547395024118}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Ladder Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,8 +249,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1604899527
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ba07ea978d77d745abcd00e190d22b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5097633547545264260}
   - component: {fileID: 5097633547545264261}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Ladder Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,8 +331,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1604899527
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bc4249bc2d3c9bf42b205e6c5e3cf32b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

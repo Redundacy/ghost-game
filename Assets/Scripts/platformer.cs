@@ -11,7 +11,7 @@ public class platformer : MonoBehaviour
     public float speed;
     Rigidbody2D rb; 
     public float jumpForce;
-    public int jumps;
+    public int extraJumps;
     private int jumpsLeft;
     public Transform isGroundedChecker;
     public float checkGroundRadius;
@@ -20,7 +20,7 @@ public class platformer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpsLeft = jumps;
+        jumpsLeft = extraJumps;
     }
 
     // Update is called once per frame
@@ -44,7 +44,10 @@ public class platformer : MonoBehaviour
     }
     // jump function
     void Jump(){
-        if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft>0){
+        if(Input.GetKeyDown(KeyCode.Space) && GetComponent<Collider>() != null){
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && jumpsLeft>=1){
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpsLeft--;
         }
@@ -52,9 +55,9 @@ public class platformer : MonoBehaviour
     // checks if the player is grounded
     void CheckIfGrounded(){
         Collider2D collider = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
-    
+
         if (collider != null) {
-        jumpsLeft = jumps;
+        jumpsLeft = extraJumps;
         }
     }
 

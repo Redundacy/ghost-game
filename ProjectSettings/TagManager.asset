@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InterObject
   - Ladder
+  - Book
   layers:
   - Default
   - TransparentFX

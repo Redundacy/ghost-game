@@ -42,9 +42,13 @@ public class BookBehavior : MonoBehaviour
 
     private IEnumerator Timer() {
         yield return new WaitForSeconds(platformTime);
+        Fall();
+    }
+
+    public void Fall() {
         falling = true;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(Vector2.down, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 //Caleb Rosenboom, Eric Dundas, Robert Spatz
 //Consolidated by Caleb Rosenboom
 public class PlayerController : MonoBehaviour
@@ -54,6 +56,9 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            if (GameObject.FindGameObjectWithTag("Book") != null) {
+                GameObject.FindGameObjectWithTag("Book").GetComponent<BookBehavior>().Fall();
+            }
             Instantiate(BookPrefab, LaunchOffset.position, transform.rotation);
         }
     }

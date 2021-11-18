@@ -12,6 +12,7 @@ public class PressurePlate : MonoBehaviour {
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = Depressed;
+
     }
 
     // Update is called once per frame
@@ -24,12 +25,14 @@ public class PressurePlate : MonoBehaviour {
     {
             GetComponent<SpriteRenderer>().sprite = Pressed;
             // Debug.Log("the collider is: " + collision.name);
-            ConnectedGameObject.SendMessage ("Open");
+            ConnectedGameObject.SendMessage ("Open",SendMessageOptions.RequireReceiver);
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        ConnectedGameObject.SendMessage ("Close");
+        ConnectedGameObject.SendMessage ("Close",SendMessageOptions.RequireReceiver);
         GetComponent<SpriteRenderer>().sprite = Depressed;
-        
+
     }
+
+
 }

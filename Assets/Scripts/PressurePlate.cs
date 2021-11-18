@@ -24,9 +24,12 @@ public class PressurePlate : MonoBehaviour {
     {
             GetComponent<SpriteRenderer>().sprite = Pressed;
             // Debug.Log("the collider is: " + collision.name);
+            ConnectedGameObject.SendMessage ("Open");
     }
     void OnTriggerExit2D(Collider2D collision)
     {
+        ConnectedGameObject.SendMessage ("Close");
         GetComponent<SpriteRenderer>().sprite = Depressed;
+        
     }
 }

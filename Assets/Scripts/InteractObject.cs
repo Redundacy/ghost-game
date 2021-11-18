@@ -14,4 +14,13 @@ public class InteractObject : MonoBehaviour
         gameObject.SetActive (false);
     }
 
+    public void Open(){
+        //Opens door
+        gameObject.SetActive (false);
+    }
+
+    public void Close(){
+        //Closes door
+        gameObject.SetActive (true);
+    }
 }

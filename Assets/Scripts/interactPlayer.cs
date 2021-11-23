@@ -45,6 +45,8 @@ public class interactPlayer : MonoBehaviour
         if (Input.GetButtonDown ("Possess") && currentInterObj && PossessedObject == null) {
             PossessedObject = currentInterObj;
             PossessedObject.SendMessage("DoPossession");
+            player = PossessedObject.GetComponent<InteractObject>().possessedState;
+            GetComponent<Animator>().SetInteger(1, player);
             // GetComponent<Animator>().Play();
         }
     }

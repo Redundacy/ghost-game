@@ -8,6 +8,7 @@ public class InteractObject : MonoBehaviour
     private BoxCollider2D ColliderDoor;
     private SpriteRenderer RendererDoor;
 
+    public int possessedState = 0;
 
     void Start ()
     {
@@ -17,7 +18,7 @@ public class InteractObject : MonoBehaviour
 
     public void DoInteraction(){
         //open text box or flip lever
-        gameObject.SetActive (false);
+        // gameObject.SetActive (false);
     }
 
     public void DoPossession() {

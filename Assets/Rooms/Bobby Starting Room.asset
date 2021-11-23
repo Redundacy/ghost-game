@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc27c0a2f1c2544d802129056f27431, type: 3}
   m_Name: Bobby Starting Room
   m_EditorClassIdentifier: 
-  SizeX: 32
-  SizeY: 18
-  OffsetX: 0
-  OffsetY: 0
+  SizeX: 35
+  SizeY: 22
+  OffsetX: 4.5
+  OffsetY: 3

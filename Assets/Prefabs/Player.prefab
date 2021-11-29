@@ -400,7 +400,7 @@ Animator:
   m_GameObject: {fileID: 5675642638743886649}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 84e4c42428104d84c97bcf4d3cbb14e4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4167c57ffcd2a467d93668ab81c925d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -444,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   inputHorizontal: 0
-  jumpForce: 8
-  extraJumpsValue: 0
+  jumpForce: 5.5
+  extraJumpsValue: 1
   fallMultiplier: 1.25
   lowJumpMultiplier: 0.5
   rememberGroundedFor: 0.1
@@ -491,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentInterObj: {fileID: 0}
   PossessedObject: {fileID: 0}
+  player: 0
 --- !u!114 &1945691990
 MonoBehaviour:
   m_ObjectHideFlags: 0

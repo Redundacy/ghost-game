@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     //Controls Throwing of Book Platform
     private void Throw()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<interactPlayer>().player == 1)
         {
             if (GameObject.FindGameObjectWithTag("Book") != null) {
                 GameObject.FindGameObjectWithTag("Book").GetComponent<BookBehavior>().Fall();
@@ -88,6 +88,12 @@ public class PlayerController : MonoBehaviour
     //Controls jumping
     void Jump()
     {
+        if (gameObject.GetComponent<interactPlayer>().player == 0) {
+            extraJumps = extraJumpsValue;
+        }
+        else {
+            extraJumps = 0;
+        }
         if (isGrounded || isClimbing)
         {
             extraJumps = extraJumpsValue;

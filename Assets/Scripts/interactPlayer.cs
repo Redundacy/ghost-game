@@ -13,7 +13,7 @@ public class interactPlayer : MonoBehaviour
 
     public GameObject PossessedObject = null;
     // number in int changes based on what you possess
-    private int player;
+    public int player;
 
     // Start is called before the first frame update
     void Start()
@@ -40,13 +40,15 @@ public class interactPlayer : MonoBehaviour
             PossessedObject.SetActive(true);
             PossessedObject.transform.position = transform.position;
             PossessedObject = null;
+            player = 0;
+            GetComponent<Animator>().SetInteger("PossessionState", player);
         }
 
         if (Input.GetButtonDown ("Possess") && currentInterObj && PossessedObject == null) {
             PossessedObject = currentInterObj;
             PossessedObject.SendMessage("DoPossession");
             player = PossessedObject.GetComponent<InteractObject>().possessedState;
-            GetComponent<Animator>().SetInteger(1, player);
+            GetComponent<Animator>().SetInteger("PossessionState", player);
             // GetComponent<Animator>().Play();
         }
     }

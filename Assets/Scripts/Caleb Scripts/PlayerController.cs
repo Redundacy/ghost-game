@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5.5f;
     private int extraJumps;
     public int extraJumpsValue = 1;
+    private int playerExtraJumps;
     public float fallMultiplier = 1.25f;
     public float lowJumpMultiplier = 0.5f;
 
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         extraJumps = extraJumpsValue;
+        playerExtraJumps = extraJumpsValue;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -89,14 +91,14 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         if (gameObject.GetComponent<interactPlayer>().player == 0) {
-            extraJumps = extraJumpsValue;
+            playerExtraJumps = extraJumpsValue;
         }
         else {
-            extraJumps = 0;
+            playerExtraJumps = 0;
         }
         if (isGrounded || isClimbing)
         {
-            extraJumps = extraJumpsValue;
+            extraJumps = playerExtraJumps;
         }
         if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || extraJumps > 0 || isClimbing))
 

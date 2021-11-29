@@ -7964,10 +7964,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 392060826417467692, guid: 2656d38b27dde494ca973a11d419bab1, type: 3}
-      propertyPath: possessedState
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 392060826417467693, guid: 2656d38b27dde494ca973a11d419bab1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -8015,10 +8011,6 @@ PrefabInstance:
     - target: {fileID: 392060826417467856, guid: 2656d38b27dde494ca973a11d419bab1, type: 3}
       propertyPath: m_Name
       value: Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 392060826417467856, guid: 2656d38b27dde494ca973a11d419bab1, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2656d38b27dde494ca973a11d419bab1, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 392060826417467694}
   - component: {fileID: 392060826417467692}
   - component: {fileID: 469719540684823835}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wizard
   m_TagString: InterObject
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa130fd27e377c4bbfaec360841c5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possessedState: 0
+  possessedState: 1
 --- !u!61 &469719540684823835
 BoxCollider2D:
   m_ObjectHideFlags: 0

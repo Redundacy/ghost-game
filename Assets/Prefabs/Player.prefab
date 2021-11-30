@@ -492,6 +492,10 @@ MonoBehaviour:
   currentInterObj: {fileID: 0}
   PossessedObject: {fileID: 0}
   player: 0
+  possessionRadius: 2
+  possessionLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1945691990
 MonoBehaviour:
   m_ObjectHideFlags: 0

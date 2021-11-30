@@ -14,6 +14,8 @@ public class interactPlayer : MonoBehaviour
     public GameObject PossessedObject = null;
     // number in int changes based on what you possess
     public int player;
+    public int possessionRadius;
+    public LayerMask possessionLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +24,18 @@ public class interactPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, possessionRadius, possessionLayer);
+        if (collider.Length == 0) {
+            currentInterObj = null;
+        }
+        else {
+            foreach (Collider2D child in collider) {
+                if (child.name == "Wizard") {
+                    currentInterObj = child.gameObject;
+                }
+            }
+        }
         interact();
         possess();
     }
@@ -53,20 +65,20 @@ public class interactPlayer : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("InterObject")){
-            Debug.Log (other.name);
-            currentInterObj = other.gameObject;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other){
-        if(other.CompareTag("InterObject")){
-            if(other.gameObject == currentInterObj){
-                currentInterObj = null;
-            }
-        }
-    }
+    // void OnTriggerEnter2D(Collider2D other){
+    //     if(other.CompareTag("InterObject")){
+    //         Debug.Log (other.name);
+    //         currentInterObj = other.gameObject;
+    //     }
+    // }
+    //
+    // void OnTriggerExit2D(Collider2D other){
+    //     if(other.CompareTag("InterObject")){
+    //         if(other.gameObject == currentInterObj){
+    //             currentInterObj = null;
+    //         }
+    //     }
+    // }
 
 
 

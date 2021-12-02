@@ -19,6 +19,10 @@ public class ButtonHandler : MonoBehaviour {
         
     }
 
+    public void TitleReturn() {
+        SceneManager.LoadScene("Title Screen");
+    }
+
     public void StartGame() {
         SceneManager.LoadScene("build scene");
     }

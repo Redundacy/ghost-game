@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7201300802135298652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.23, y: 11.14, z: 0}
-  m_LocalScale: {x: 1.3034431, y: 2.9348543, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,13 +73,13 @@ SpriteRenderer:
   m_SortingLayerID: -1798570247
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f3972e4be5c2684bb4ce73a896f1165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
+  m_AdaptiveModeThreshold: 0.33
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa130fd27e377c4bbfaec360841c5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possessedState: 0
 --- !u!61 &7201300802135298655
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,8 +116,8 @@ BoxCollider2D:
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    adaptiveTilingThreshold: 0.33
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2

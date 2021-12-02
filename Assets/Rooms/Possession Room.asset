@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc27c0a2f1c2544d802129056f27431, type: 3}
   m_Name: Possession Room
   m_EditorClassIdentifier: 
-  SizeX: 63
+  SizeX: 66
   SizeY: 22
-  OffsetX: 18.5
-  OffsetY: 3
+  OffsetX: 47
+  OffsetY: 1

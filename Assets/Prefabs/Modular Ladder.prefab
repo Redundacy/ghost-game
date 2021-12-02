@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 5097633546870472348}
   - component: {fileID: 5097633546870472347}
   - component: {fileID: 5097633546870472346}
+<<<<<<< Updated upstream
   m_Layer: 7
+=======
+  m_Layer: 6
+>>>>>>> Stashed changes
   m_Name: Modular Ladder
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -109,7 +113,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5097633547007060584}
   - component: {fileID: 5097633547007060585}
+<<<<<<< Updated upstream
   m_Layer: 7
+=======
+  m_Layer: 6
+>>>>>>> Stashed changes
   m_Name: Ladder Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +199,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5097633547395024117}
   - component: {fileID: 5097633547395024118}
+<<<<<<< Updated upstream
   m_Layer: 7
+=======
+  m_Layer: 6
+>>>>>>> Stashed changes
   m_Name: Ladder Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +285,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5097633547545264260}
   - component: {fileID: 5097633547545264261}
+<<<<<<< Updated upstream
   m_Layer: 7
+=======
+  m_Layer: 6
+>>>>>>> Stashed changes
   m_Name: Ladder Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}

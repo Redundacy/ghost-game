@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour {
     public GameObject TutorialPanel;
-
     public GameObject CreditsPanel;
+    public GameObject Camera;
+
+    public GameObject Player;
+    public GameObject Wizard;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,9 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void TitleReturn() {
+        if (GameObject.Find("RestartHandler")) {
+            Destroy(GameObject.Find("RestartHandler"));
+        }
         SceneManager.LoadScene("Title Screen");
     }
 
@@ -37,5 +43,12 @@ public class ButtonHandler : MonoBehaviour {
 
     public void Quit() {
         Application.Quit();
+    }
+
+    public void RestartGame() {
+        RoomData currentRoom = Camera.GetComponent<CameraHandler>().CurrentRoom;
+        RestartHandler restartData = RestartHandler.Instance;
+        restartData.currentRoom = currentRoom;
+        SceneManager.LoadScene("build scene");
     }
 }

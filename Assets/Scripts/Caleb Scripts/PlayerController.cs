@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public float climbSpeed = 2f;
     public float distance;
 
+    public GameObject pauseMenu;
+
     //Start called before first update
     void Start()
     {
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         jumpImprovement();
         Throw();
         Climb();
+        Menu();
     }
    
     //Controls Throwing of Book Platform
@@ -185,6 +188,13 @@ public class PlayerController : MonoBehaviour
             Jump();
             isClimbing = false;
             _rb.gravityScale = 1;
+        }
+    }
+
+    void Menu() {
+        if(Input.GetButtonDown("Cancel"))
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

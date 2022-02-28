@@ -103,14 +103,20 @@ public class PlayerController : MonoBehaviour
         {
             extraJumps = playerExtraJumps;
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log(extraJumps);
+        }
         if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || extraJumps > 0 || isClimbing))
 
         {
+            _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             extraJumps--;
         }
-        else if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor) && extraJumps == 0)
+        else if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || isClimbing) && extraJumps == 0)
         {
+            _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -185,9 +191,9 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && isClimbing)
         {
+            _rb.gravityScale = 1;
             Jump();
             isClimbing = false;
-            _rb.gravityScale = 1;
         }
     }
 

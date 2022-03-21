@@ -52,7 +52,7 @@ public class platformer : MonoBehaviour
             jumpsLeft--;
         }
     }
-    // checks if the player is grounded
+    // checks if the playerState is grounded
     void CheckIfGrounded(){
         Collider2D collider = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
 

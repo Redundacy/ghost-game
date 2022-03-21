@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public float climbSpeed = 2f;
     public float distance;
 
+    public float localGravityScale = 20;
+
     public GameObject pauseMenu;
 
     //Start called before first update
@@ -66,6 +68,16 @@ public class PlayerController : MonoBehaviour
             }
             Instantiate(BookPrefab, LaunchOffset.position, transform.rotation);
         }
+
+        IEnumerator animation = CastAnimTimer();
+        StartCoroutine(animation);
+    }
+
+    private IEnumerator CastAnimTimer()
+    {
+        GetComponent<Animator>().SetBool("IsCasting", true);
+        yield return new WaitForSeconds(1);
+        GetComponent<Animator>().SetBool("IsCasting", true);
     }
 
     //Controls player movement
@@ -81,6 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
+        GetComponent<Animator>().SetFloat("VelocityX", Mathf.Abs(_rb.velocity.x));
     }
 
     //Character Flipping Left or Right Based on Input
@@ -137,6 +150,7 @@ public class PlayerController : MonoBehaviour
             }
             isGrounded = false;
         }
+        GetComponent<Animator>().SetBool("IsGrounded", isGrounded);
     }
 
     //This improves the feeling of jump
@@ -187,14 +201,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _rb.gravityScale = 1;
+            _rb.gravityScale = localGravityScale;
         }
         if (Input.GetButtonDown("Jump") && isClimbing)
         {
-            _rb.gravityScale = 1;
+            _rb.gravityScale = localGravityScale;
             Jump();
             isClimbing = false;
         }
+        GetComponent<Animator>().SetBool("IsClimbing", isClimbing);
     }
 
     void Menu() {

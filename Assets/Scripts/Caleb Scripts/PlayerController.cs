@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
     public float climbSpeed = 2f;
     public float distance;
 
+    //Making the game feel more fluid stuff
+    public float maxSpeed = 10;
+    public float acceleration = 5;
+    public float deceleration = 5;
+    private float currentSpeed = 0;
+
     public GameObject pauseMenu;
 
     //Start called before first update
@@ -72,7 +78,41 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(inputHorizontal * speed, _rb.velocity.y);
+        //_rb.velocity = new Vector2(inputHorizontal * speed, _rb.velocity.y);
+
+        //Below is Wally's movement improvements.
+        switch (inputHorizontal)
+        {
+            case 0:
+                if (currentSpeed != 0)
+                {
+                    if (currentSpeed > 0)
+                    {
+                        currentSpeed = currentSpeed - deceleration;
+                    } else if (currentSpeed < 0)
+                    {
+                        currentSpeed = currentSpeed + deceleration;
+                    }
+                }
+                break;
+            case 1:
+                if (currentSpeed < maxSpeed)
+                {
+                    currentSpeed = currentSpeed + acceleration;
+                }
+                break;
+            case -1:
+                if (currentSpeed > (-1 * maxSpeed))
+                {
+                    currentSpeed = currentSpeed + (-1 * acceleration);
+                }
+                break;
+            default:
+                break;
+        }     
+        _rb.velocity = new Vector2(currentSpeed, _rb.velocity.y);
+        //Above is Wally's movement improvements.
+
         if (facingRight == false && inputHorizontal > 0)
         {
             Flip();

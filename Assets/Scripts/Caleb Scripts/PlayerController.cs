@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     //Controls Throwing of Book Platform
     private void Throw()
     {
-        if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<interactPlayer>().player == 1)
+        if (Input.GetButtonDown("Throw") && gameObject.GetComponent<interactPlayer>().player == 1)
         {
             if (GameObject.FindGameObjectWithTag("Book") != null) {
                 GameObject.FindGameObjectWithTag("Book").GetComponent<BookBehavior>().Fall();
@@ -203,6 +203,7 @@ public class PlayerController : MonoBehaviour
             pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
     }

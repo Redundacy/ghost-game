@@ -67,17 +67,17 @@ public class PlayerController : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Book").GetComponent<BookBehavior>().Fall();
             }
             Instantiate(BookPrefab, LaunchOffset.position, transform.rotation);
+            IEnumerator animation = CastAnimTimer();
+            StartCoroutine(animation);
         }
 
-        IEnumerator animation = CastAnimTimer();
-        StartCoroutine(animation);
     }
 
     private IEnumerator CastAnimTimer()
     {
         GetComponent<Animator>().SetBool("IsCasting", true);
         yield return new WaitForSeconds(1);
-        GetComponent<Animator>().SetBool("IsCasting", true);
+        GetComponent<Animator>().SetBool("IsCasting", false);
     }
 
     //Controls player movement

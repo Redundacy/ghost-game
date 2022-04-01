@@ -27,12 +27,17 @@ public class interactPlayer : MonoBehaviour
     void Update() {
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, possessionRadius, possessionLayer);
         if (collider.Length == 0) {
+            if (currentInterObj != null)
+            {
+                currentInterObj.SendMessage("InputPopupToggle");
+            }
             currentInterObj = null;
         }
         else {
             foreach (Collider2D child in collider) {
                 if (child.name == "Wizard") {
                     currentInterObj = child.gameObject;
+                    currentInterObj.SendMessage("InputPopupToggle");
                 }
             }
         }

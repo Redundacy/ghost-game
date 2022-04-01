@@ -25,6 +25,11 @@ public class InteractObject : MonoBehaviour
         gameObject.SetActive (false);
     }
 
+    public void InputPopupToggle()
+    {
+        transform.Find("Interact Icon").gameObject.SetActive(!transform.Find("InteractIcon").gameObject.activeSelf);
+    }
+
     public void Open(){
         //Opens door
         ColliderDoor.enabled = false;

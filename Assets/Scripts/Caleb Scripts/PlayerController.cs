@@ -36,10 +36,18 @@ public class PlayerController : MonoBehaviour
     public float distance;
 
     //Making the game feel more fluid stuff
-    public float maxSpeed = 10;
-    public float acceleration = 5;
-    public float deceleration = 5;
+    public float[] maxSpeed = {
+        10, 10
+    };
+    public float[] acceleration = {
+        5, 5
+    };
+    public float[] deceleration = {
+        5, 5
+    };
     private float currentSpeed = 0;
+
+    public float localGravityScale = 20;
 
     public GameObject pauseMenu;
 
@@ -88,23 +96,23 @@ public class PlayerController : MonoBehaviour
                 {
                     if (currentSpeed > 0)
                     {
-                        currentSpeed = currentSpeed - deceleration;
+                        currentSpeed = currentSpeed - deceleration[gameObject.GetComponent<interactPlayer>().player];
                     } else if (currentSpeed < 0)
                     {
-                        currentSpeed = currentSpeed + deceleration;
+                        currentSpeed = currentSpeed + deceleration[gameObject.GetComponent<interactPlayer>().player];
                     }
                 }
                 break;
             case 1:
-                if (currentSpeed < maxSpeed)
+                if (currentSpeed < maxSpeed[gameObject.GetComponent<interactPlayer>().player])
                 {
-                    currentSpeed = currentSpeed + acceleration;
+                    currentSpeed = currentSpeed + acceleration[gameObject.GetComponent<interactPlayer>().player];
                 }
                 break;
             case -1:
-                if (currentSpeed > (-1 * maxSpeed))
+                if (currentSpeed > (-1 * maxSpeed[gameObject.GetComponent<interactPlayer>().player]))
                 {
-                    currentSpeed = currentSpeed + (-1 * acceleration);
+                    currentSpeed = currentSpeed + (-1 * acceleration[gameObject.GetComponent<interactPlayer>().player]);
                 }
                 break;
             default:
@@ -221,13 +229,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _rb.gravityScale = 1;
+            _rb.gravityScale = localGravityScale;
         }
         if (Input.GetButtonDown("Jump") && isClimbing)
         {
             Jump();
             isClimbing = false;
-            _rb.gravityScale = 1;
+            _rb.gravityScale = localGravityScale;
         }
     }
 

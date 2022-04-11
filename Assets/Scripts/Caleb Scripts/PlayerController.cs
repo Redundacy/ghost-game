@@ -35,6 +35,18 @@ public class PlayerController : MonoBehaviour
     public float climbSpeed = 2f;
     public float distance;
 
+    //Making the game feel more fluid stuff
+    public float[] maxSpeed = {
+        10, 10
+    };
+    public float[] acceleration = {
+        5, 5
+    };
+    public float[] deceleration = {
+        5, 5
+    };
+    private float currentSpeed = 0;
+
     public float localGravityScale = 20;
 
     public GameObject pauseMenu;
@@ -67,24 +79,48 @@ public class PlayerController : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Book").GetComponent<BookBehavior>().Fall();
             }
             Instantiate(BookPrefab, LaunchOffset.position, transform.rotation);
-            IEnumerator animation = CastAnimTimer();
-            StartCoroutine(animation);
         }
-
-    }
-
-    private IEnumerator CastAnimTimer()
-    {
-        GetComponent<Animator>().SetBool("IsCasting", true);
-        yield return new WaitForSeconds(1);
-        GetComponent<Animator>().SetBool("IsCasting", false);
     }
 
     //Controls player movement
     void Move()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(inputHorizontal * speed, _rb.velocity.y);
+        //_rb.velocity = new Vector2(inputHorizontal * speed, _rb.velocity.y);
+
+        //Below is Wally's movement improvements.
+        switch (inputHorizontal)
+        {
+            case 0:
+                if (currentSpeed != 0)
+                {
+                    if (currentSpeed > 0)
+                    {
+                        currentSpeed = currentSpeed - deceleration[gameObject.GetComponent<interactPlayer>().player];
+                    } else if (currentSpeed < 0)
+                    {
+                        currentSpeed = currentSpeed + deceleration[gameObject.GetComponent<interactPlayer>().player];
+                    }
+                }
+                break;
+            case 1:
+                if (currentSpeed < maxSpeed[gameObject.GetComponent<interactPlayer>().player])
+                {
+                    currentSpeed = currentSpeed + acceleration[gameObject.GetComponent<interactPlayer>().player];
+                }
+                break;
+            case -1:
+                if (currentSpeed > (-1 * maxSpeed[gameObject.GetComponent<interactPlayer>().player]))
+                {
+                    currentSpeed = currentSpeed + (-1 * acceleration[gameObject.GetComponent<interactPlayer>().player]);
+                }
+                break;
+            default:
+                break;
+        }     
+        _rb.velocity = new Vector2(currentSpeed, _rb.velocity.y);
+        //Above is Wally's movement improvements.
+
         if (facingRight == false && inputHorizontal > 0)
         {
             Flip();
@@ -93,7 +129,6 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        GetComponent<Animator>().SetFloat("VelocityX", Mathf.Abs(_rb.velocity.x));
     }
 
     //Character Flipping Left or Right Based on Input
@@ -116,20 +151,14 @@ public class PlayerController : MonoBehaviour
         {
             extraJumps = playerExtraJumps;
         }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log(extraJumps);
-        }
         if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || extraJumps > 0 || isClimbing))
 
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             extraJumps--;
         }
-        else if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || isClimbing) && extraJumps == 0)
+        else if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor) && extraJumps == 0)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -150,7 +179,6 @@ public class PlayerController : MonoBehaviour
             }
             isGrounded = false;
         }
-        GetComponent<Animator>().SetBool("IsGrounded", isGrounded);
     }
 
     //This improves the feeling of jump
@@ -205,11 +233,10 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && isClimbing)
         {
-            _rb.gravityScale = localGravityScale;
             Jump();
             isClimbing = false;
+            _rb.gravityScale = localGravityScale;
         }
-        GetComponent<Animator>().SetBool("IsClimbing", isClimbing);
     }
 
     void Menu() {

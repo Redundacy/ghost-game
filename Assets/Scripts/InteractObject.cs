@@ -25,9 +25,14 @@ public class InteractObject : MonoBehaviour
         gameObject.SetActive (false);
     }
 
-    public void InputPopupToggle()
+    public void InputPopupOn()
     {
-        transform.Find("Interact Icon").gameObject.SetActive(!transform.Find("InteractIcon").gameObject.activeSelf);
+        transform.Find("Interact Icon").gameObject.SetActive(true);
+    }
+
+    public void InputPopupOff()
+    {
+        transform.Find("Interact Icon").gameObject.SetActive(false);
     }
 
     public void Open(){

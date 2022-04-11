@@ -32,7 +32,7 @@ public class interactPlayer : MonoBehaviour
         if (collider.Length == 0) {
             if (currentInterObj != null)
             {
-                currentInterObj.SendMessage("InputPopupToggle");
+                currentInterObj.SendMessage("InputPopupOff");
             }
             currentInterObj = null;
         }
@@ -40,7 +40,7 @@ public class interactPlayer : MonoBehaviour
             foreach (Collider2D child in collider) {
                 if (child.name == "Wizard") {
                     currentInterObj = child.gameObject;
-                    currentInterObj.SendMessage("InputPopupToggle");
+                    currentInterObj.SendMessage("InputPopupOn");
                 }
             }
         }
@@ -78,19 +78,20 @@ public class interactPlayer : MonoBehaviour
     void grabItem()
     {
         RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale, rayDist);
-        Debug.Log(grabCheck.collider);
+        // Debug.Log(grabCheck.collider);
         if(grabCheck.collider != null && grabCheck.collider.tag == "Box")
         {
             if (Input.GetButton("Grab"))
             {
                 grabCheck.collider.gameObject.transform.parent = itemHolder;
-                grabCheck.collider.gameObject.transform.position = itemHolder.position;
+                grabCheck.collider.gameObject.transform.localPosition = Vector3.zero;
                 grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             }
             else
             {
                 grabCheck.collider.gameObject.transform.parent = null;
                 grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().velocity.Set(0,0);
             }
         }
     }

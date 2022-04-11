@@ -16,7 +16,10 @@ public class interactPlayer : MonoBehaviour
     public int player;
     public int possessionRadius;
     public LayerMask possessionLayer;
-
+    
+    public Transform grabDetect;
+    public Transform itemHolder;
+    public float rayDist;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,7 @@ public class interactPlayer : MonoBehaviour
         }
         interact();
         possess();
+        grabItem();
     }
 
 
@@ -67,6 +71,27 @@ public class interactPlayer : MonoBehaviour
             player = PossessedObject.GetComponent<InteractObject>().possessedState;
             GetComponent<Animator>().SetInteger("PossessionState", player);
             // GetComponent<Animator>().Play();
+        }
+    }
+    //Caleb Rosenboom
+    //Made using https://www.youtube.com/watch?v=1uq43EIzo-U&t=320s
+    void grabItem()
+    {
+        RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale, rayDist);
+        Debug.Log(grabCheck.collider);
+        if(grabCheck.collider != null && grabCheck.collider.tag == "Box")
+        {
+            if (Input.GetButton("Grab"))
+            {
+                grabCheck.collider.gameObject.transform.parent = itemHolder;
+                grabCheck.collider.gameObject.transform.position = itemHolder.position;
+                grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
+            else
+            {
+                grabCheck.collider.gameObject.transform.parent = null;
+                grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
         }
     }
 

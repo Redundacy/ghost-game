@@ -6,14 +6,16 @@ public class InteractObject : MonoBehaviour
 {
 
     private BoxCollider2D ColliderDoor;
-    private SpriteRenderer RendererDoor;
+    private SpriteRenderer Renderer;
 
     public int possessedState = 0;
+    public Material OutlineMaterial;
+    public Material DefaultMaterial;
 
     void Start ()
     {
         ColliderDoor = GetComponent<BoxCollider2D>();
-        RendererDoor = GetComponent<SpriteRenderer>();
+        Renderer = GetComponent<SpriteRenderer>();
     }
 
     public void DoInteraction(){
@@ -28,23 +30,25 @@ public class InteractObject : MonoBehaviour
     public void InputPopupOn()
     {
         transform.Find("Interact Icon").gameObject.SetActive(true);
+        Renderer.material = OutlineMaterial;
     }
 
     public void InputPopupOff()
     {
         transform.Find("Interact Icon").gameObject.SetActive(false);
+        Renderer.material = DefaultMaterial;
     }
 
     public void Open(){
         //Opens door
         ColliderDoor.enabled = false;
-        RendererDoor.enabled = false;
+        Renderer.enabled = false;
     }
 
     public void Close(){
         //Closes door
         gameObject.SetActive (true);
         ColliderDoor.enabled = true;
-        RendererDoor.enabled = true;
+        Renderer.enabled = true;
     }
 }

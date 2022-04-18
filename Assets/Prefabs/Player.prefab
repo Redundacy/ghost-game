@@ -191,7 +191,10 @@ MonoBehaviour:
 
     Left Click: Possessed Ability
 
-    T: Open/Close This Panel'
+    Esc: Open/Close Menu
+
+    T:
+    Open/Close This Panel'
 --- !u!1 &1750419862
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1922260868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -322,7 +325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031568917606108273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.26, y: -0.36, z: 0}
+  m_LocalPosition: {x: 2, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5675642638743886655}
@@ -476,7 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   inputHorizontal: 0
-  jumpForce: 5.5
+  jumpForce: 20
   extraJumpsValue: 1
   fallMultiplier: 1.25
   lowJumpMultiplier: 0.5
@@ -493,6 +496,16 @@ MonoBehaviour:
     m_Bits: 128
   climbSpeed: 6
   distance: 0
+  maxSpeed:
+  - 10
+  - 10
+  acceleration:
+  - 5
+  - 5
+  deceleration:
+  - 5
+  - 5
+  localGravityScale: 5
   pauseMenu: {fileID: 0}
 --- !u!70 &5675642638743886592
 CapsuleCollider2D:
@@ -569,7 +582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5675642638764692021}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.05, z: -11.087704}
+  m_LocalPosition: {x: 0, y: 0, z: -11.087704}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 5675642638743886655}
@@ -629,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7766921015453764682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -0.36, z: 0}
+  m_LocalPosition: {x: 1.2, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5675642638743886655}

@@ -19,10 +19,10 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    private Dialogue thisDialogue;
+    private DialogueNode thisDialogue;
     private int lineNumber;
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(DialogueNode dialogue)
     {
         thisDialogue = dialogue;
         animator.SetBool("IsOpen", true);
@@ -36,23 +36,32 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
 
-        DisplayNextSentence();
+        DisplayNextSentence(true);
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextSentence(bool isRightButton)
     {
         if (sentences.Count == 0)
         {
-            EndDialogue();
-            return;
+            if (isRightButton && thisDialogue.NextDialogueNodes[0] != null)
+            {
+                DialogueTrigger.TriggerDialogue(thisDialogue.NextDialogueNodes[0]);
+            }
+            else
+            {
+                EndDialogue();
+                return;
+            }
         }
         Debug.Log(lineNumber);
         if (lineNumber == thisDialogue.choiceLineNumber)
         {
-            leftButton.SetActive(true);
-            leftButton.GetComponentInChildren<Text>().text = thisDialogue.choices[0];
-
-            rightButton.GetComponentInChildren<Text>().text = thisDialogue.choices[1];
+            if (thisDialogue.choices[1] != null)
+            {
+                leftButton.SetActive(true);
+                leftButton.GetComponentInChildren<Text>().text = thisDialogue.choices[1];
+            }
+            rightButton.GetComponentInChildren<Text>().text = thisDialogue.choices[0];
         } else
         {
             leftButton.SetActive(false);
@@ -68,8 +77,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        FindObjectOfType<DialogueTrigger>().gobAccepted = false;
-        FindObjectOfType<DialogueTrigger>().gobRejectedOrIgnored ++;
+        // FindObjectOfType<DialogueTrigger>().gobAccepted = false;
+        // FindObjectOfType<DialogueTrigger>().gobRejectedOrIgnored ++;
         animator.SetBool("IsOpen", false);
     }
 }

@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
             if (isRightButton && thisDialogue.NextDialogueNodes[0] != null)
             {
                 DialogueTrigger.TriggerDialogue(thisDialogue.NextDialogueNodes[0]);
+                return;
             }
             else
             {

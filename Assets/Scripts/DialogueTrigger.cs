@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
-
+    public string triggeredCutscene;
     private static Dictionary<string, DialogueNode> dialogueDictionary = new Dictionary<string, DialogueNode>()
     {
         {"OpeningDialogue1", new DialogueNode("???",new[] {"Hey . . .", "HEY! WAKE UP!"}, 2, new[] {"OpeningDialogue2", null}, new[] {"NEXT", null})},
-        {"OpeningDialogue2", new DialogueNode("Jimmy", new[] {"My name's Jimmy","filler 1","filler 2"," filler 3"}, 4, new[] {"OpeningDialogue3", null}, new[] {"NEXT", null})}
+        {"OpeningDialogue2", new DialogueNode("Jimmy", new[] {"My name's Jimmy","filler 1","filler 2"," filler 3"}, 4, new[] {null, ""}, new[] {"NEXT", null})}
     };
 
     private Dialogue annoyedGoblin = new Dialogue("???", new []{"Can you stop ignoring me?", "I see you've got some <b>POINTS</b>.", "Do you mind giving some to me?",
@@ -24,6 +24,11 @@ public class DialogueTrigger : MonoBehaviour
     public static void TriggerDialogue(string cutsceneName)
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogueDictionary[cutsceneName]);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        TriggerDialogue(triggeredCutscene);
     }
 
 }

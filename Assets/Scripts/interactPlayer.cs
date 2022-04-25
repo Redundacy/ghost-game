@@ -38,7 +38,7 @@ public class interactPlayer : MonoBehaviour
         }
         else {
             foreach (Collider2D child in collider) {
-                if (child.name == "Wizard") {
+                if (child.name == "Wizard" || child.name == "Sheets Ghost") {
                     currentInterObj = child.gameObject;
                     currentInterObj.SendMessage("InputPopupOn");
                 }

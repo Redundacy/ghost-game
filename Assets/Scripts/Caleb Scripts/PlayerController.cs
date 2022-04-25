@@ -37,13 +37,13 @@ public class PlayerController : MonoBehaviour
 
     //Making the game feel more fluid stuff
     public float[] maxSpeed = {
-        10, 10
+        10, 10, 10
     };
     public float[] acceleration = {
-        5, 5
+        5, 5, 5
     };
     public float[] deceleration = {
-        5, 5
+        5, 5, 5
     };
     private float currentSpeed = 0;
 

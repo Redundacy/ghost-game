@@ -12,6 +12,9 @@ public class InteractObject : MonoBehaviour
     public Material OutlineMaterial;
     public Material DefaultMaterial;
 
+    public Sprite OpenState;
+    public Sprite ClosedState;
+
     void Start ()
     {
         ColliderDoor = GetComponent<BoxCollider2D>();
@@ -41,14 +44,14 @@ public class InteractObject : MonoBehaviour
 
     public void Open(){
         //Opens door
+        Renderer.sprite = OpenState;
         ColliderDoor.enabled = false;
-        Renderer.enabled = false;
     }
 
     public void Close(){
         //Closes door
         gameObject.SetActive (true);
         ColliderDoor.enabled = true;
-        Renderer.enabled = true;
+        Renderer.sprite = ClosedState;
     }
 }

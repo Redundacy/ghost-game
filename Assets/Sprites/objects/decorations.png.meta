@@ -16,7 +16,7 @@ TextureImporter:
     second: decorations_3
   - first:
       213: 4748566177799071609
-    second: decorations_4
+    second: decorations_entrance
   - first:
       213: -2674238886720689716
     second: decorations_5
@@ -346,13 +346,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decorations_4
+      name: decorations_entrance
       rect:
         serializedVersion: 2
         x: 48
-        y: 96
-        width: 8
-        height: 8
+        y: 88
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,27 +362,6 @@ TextureImporter:
       bones: []
       spriteID: 977e52c97cb46e140800000000000000
       internalID: 4748566177799071609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decorations_5
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 96
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc92a78b6e133ead0800000000000000
-      internalID: -2674238886720689716
       vertices: []
       indices: 
       edges: []
@@ -551,48 +530,6 @@ TextureImporter:
       bones: []
       spriteID: 5be37106e4acc2140800000000000000
       internalID: 4696350949408980661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decorations_14
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 88
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88d252a230e8182c0800000000000000
-      internalID: -4431104414112731768
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: decorations_15
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 88
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9fc6bed8617d4bd00800000000000000
-      internalID: 987650710171249913
       vertices: []
       indices: 
       edges: []

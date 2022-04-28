@@ -32,7 +32,7 @@ public class interactPlayer : MonoBehaviour
         if (collider.Length == 0) {
             if (currentInterObj != null)
             {
-                if (player != 0) 
+                if (player == 0) 
                     currentInterObj.SendMessage("InputPopupOff");
             }
             currentInterObj = null;

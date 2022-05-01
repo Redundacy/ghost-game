@@ -26,11 +26,11 @@ public class ButtonHandler : MonoBehaviour {
         if (GameObject.Find("RestartHandler")) {
             Destroy(GameObject.Find("RestartHandler"));
         }
-        SceneManager.LoadScene("Title Screen");
+        SceneManager.LoadScene("Title Build Scene");
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("build scene");
+        SceneManager.LoadScene("Raveyard Build Scene");
     }
 
     public void ShowTutorial() {
@@ -45,10 +45,10 @@ public class ButtonHandler : MonoBehaviour {
         Application.Quit();
     }
 
-    public void RestartGame() {
+    public void RestartGame(string sceneName) {
         RoomData currentRoom = Camera.GetComponent<CameraHandler>().CurrentRoom;
         RestartHandler restartData = RestartHandler.Instance;
         restartData.currentRoom = currentRoom;
-        SceneManager.LoadScene("build scene");
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -14,6 +14,11 @@ public class InteractObject : MonoBehaviour
 
     public Sprite OpenState;
     public Sprite ClosedState;
+    public GameObject ConnectedGameObject;
+    public string CutsceneTrigger;
+    public DialogueTrigger dialogueTrigger;
+
+    private bool cutsceneActivated = false;
 
     void Start ()
     {
@@ -22,8 +27,24 @@ public class InteractObject : MonoBehaviour
     }
 
     public void DoInteraction(){
-        //open text box or flip lever
-        // gameObject.SetActive (false);
+        if (ConnectedGameObject)
+        {
+            if (Renderer.sprite == ClosedState)
+            {
+                ConnectedGameObject.SendMessage("Open");
+                Renderer.sprite = OpenState;
+                if (!cutsceneActivated)
+                {
+                    dialogueTrigger.TriggerDialogue(CutsceneTrigger);
+                    cutsceneActivated = true;
+                }
+            }
+            else
+            {
+                ConnectedGameObject.SendMessage("Close");
+                Renderer.sprite = ClosedState;
+            }
+        }
     }
 
     public void DoPossession() {

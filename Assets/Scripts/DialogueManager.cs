@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject rightButton;
 
     public Animator animator;
+    public GameObject[] MovingGameObjects;
+    public GameObject PlayerGameObject;
 
     private Queue<string> sentences;
     // Start is called before the first frame update
@@ -26,8 +28,9 @@ public class DialogueManager : MonoBehaviour
     {
         thisDialogue = dialogue;
         animator.SetBool("IsOpen", true);
+        PlayerGameObject.GetComponent<PlayerController>().inCutscene = true;
         nameText.text = dialogue.name;
-        
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
         sentences.Clear();
         lineNumber = 1;
         
@@ -45,7 +48,9 @@ public class DialogueManager : MonoBehaviour
         {
             if (isRightButton && thisDialogue.NextDialogueNodes[0] != null)
             {
-                DialogueTrigger.TriggerDialogue(thisDialogue.NextDialogueNodes[0]);
+                IEnumerator additionalActions = CutsceneActions(thisDialogue.NextDialogueNodes[0]);
+                StartCoroutine(additionalActions);
+                GetComponent<DialogueTrigger>().TriggerDialogue(thisDialogue.NextDialogueNodes[0]);
                 return;
             }
             else
@@ -74,12 +79,30 @@ public class DialogueManager : MonoBehaviour
         lineNumber++;
     }
 
-
-
     void EndDialogue()
     {
-        // FindObjectOfType<DialogueTrigger>().gobAccepted = false;
-        // FindObjectOfType<DialogueTrigger>().gobRejectedOrIgnored ++;
         animator.SetBool("IsOpen", false);
+        PlayerGameObject.GetComponent<PlayerController>().inCutscene = false;
+    }
+
+    public IEnumerator CutsceneActions(string cutsceneName)
+    {
+        switch (cutsceneName)
+        {
+            case "OpeningDialogue2":
+                PlayerGameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8, ForceMode2D.Impulse);
+                break;
+            case "OpeningDialogue5":
+                PlayerGameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right;
+                yield return new WaitForSeconds(4f);
+                PlayerGameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                break;
+            case "LeverCutscene2":
+                MovingGameObjects[0].GetComponent<Collider2D>().enabled = true;
+                MovingGameObjects[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                break;
+        }
+
+        yield return new WaitForSeconds(1);
     }
 }

@@ -11,17 +11,15 @@ public class DialogueTrigger : MonoBehaviour
     private static Dictionary<string, DialogueNode> dialogueDictionary = new Dictionary<string, DialogueNode>()
     {
         {"OpeningDialogue1", new DialogueNode("???",new[] {"Hey . . .", "HEY! WAKE UP!"}, 2, new[] {"OpeningDialogue2", null}, new[] {"NEXT", null})},
-        {"OpeningDialogue2", new DialogueNode("Jimmy", new[] {"My name's Jimmy","filler 1","filler 2"," filler 3"}, 4, new[] {null, ""}, new[] {"NEXT", null})}
+        {"OpeningDialogue2", new DialogueNode("You", new []{"What?", "Who are you?", "Where am I?"}, 3, new []{"OpeningDialogue3", null}, new []{"NEXT", null})},
+        {"OpeningDialogue3", new DialogueNode("Jimmy?", new[] {"My name's Jimmy.","You were stuck in that hole down there.","Did you fall asleep during the party?", "Nice costume, by the way."}, 4, new[] {"OpeningDialogue4", ""}, new[] {"NEXT", null})},
+        {"OpeningDialogue4", new DialogueNode("You", new[] {"What party? What costume?", "I don't know what I'm doing here."}, 2, new[] {"OpeningDialogue5", ""}, new[] {"NEXT", null})},
+        {"OpeningDialogue5", new DialogueNode("Jimmy", new[] {"Let me show you!","First we gotta get out of this yard.","I was looking for a nice place to enjoy the music, and got locked in here.", "If we work together, we can get back to the party."}, 4, new[] {null, ""}, new[] {"NEXT", null})},
+        {"LeverCutscene1", new DialogueNode("Jimmy", new []{"Alright!","Now, we just need to get past the rest of these gates.","You may have to move some rave equipment around to open them.",}, 3, new []{"LeverCutscene2", ""}, new []{"NEXT", null})},
+        {"LeverCutscene2", new DialogueNode("You", new []{"Okay.","(I wonder how he gets around.)","(Maybe I can speed him up somehow.)",}, 3, new []{null, ""}, new []{"NEXT", null})}
     };
 
-    private Dialogue annoyedGoblin = new Dialogue("???", new []{"Can you stop ignoring me?", "I see you've got some <b>POINTS</b>.", "Do you mind giving some to me?",
-        "Aww, that's too bad..."}, 3, new[] { "YES", "NO" });
-
-    private Dialogue sDY = new Dialogue("???",
-        new[] {"HAHAHAHA! SUCKER! What? did you think I would give you something in return?", "See you NEVER, loser!"},
-        0, new string[2]);
-
-    public static void TriggerDialogue(string cutsceneName)
+    public void TriggerDialogue(string cutsceneName)
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogueDictionary[cutsceneName]);
     }

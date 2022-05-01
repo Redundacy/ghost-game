@@ -32,14 +32,14 @@ public class interactPlayer : MonoBehaviour
         if (collider.Length == 0) {
             if (currentInterObj != null)
             {
-                if (player != 0) 
+                if (player == 0) 
                     currentInterObj.SendMessage("InputPopupOff");
             }
             currentInterObj = null;
         }
         else {
             foreach (Collider2D child in collider) {
-                if (child.name == "Wizard" || child.name == "Sheets Ghost") {
+                if (child.name == "Wizard" || child.name == "Sheets Ghost" || child.name == "Lever") {
                     currentInterObj = child.gameObject;
                     currentInterObj.SendMessage("InputPopupOn");
                 }
@@ -66,7 +66,7 @@ public class interactPlayer : MonoBehaviour
             GetComponent<Animator>().SetInteger("PossessionState", player);
         }
 
-        if (Input.GetButtonDown ("Possess") && currentInterObj && PossessedObject == null) {
+        if (Input.GetButtonDown ("Possess") && currentInterObj.GetComponent<InteractObject>().possessedState != 0 && PossessedObject == null) {
             PossessedObject = currentInterObj;
             PossessedObject.SendMessage("DoPossession");
             player = PossessedObject.GetComponent<InteractObject>().possessedState;

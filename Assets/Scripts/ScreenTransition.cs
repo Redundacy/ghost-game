@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class ScreenTransition : MonoBehaviour {
     public GameObject MainCamera;
-    public RoomData To;
+    public Collider2D To;
     public bool UpDown;
+    public CinemachineConfiner Confiner;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +23,7 @@ public class ScreenTransition : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D collision) {
         if (collision.tag == "Player") {
-            if (UpDown) {
-                MainCamera.GetComponent<CameraHandler>().CurrentRoom = To;
-            }
-            else {
-                MainCamera.GetComponent<CameraHandler>().CurrentRoom = To;
-            }
+            Confiner.m_BoundingShape2D = To;
         }
     }
 }

@@ -54,9 +54,9 @@ TagManager:
   - name: environment
     uniqueID: 3961468959
     locked: 0
-  - name: fg
-    uniqueID: 2496397049
-    locked: 0
   - name: character
     uniqueID: 287387141
+    locked: 0
+  - name: fg
+    uniqueID: 2496397049
     locked: 0

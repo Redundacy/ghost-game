@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public float climbSpeed = 2f;
     public float distance;
 
+    public bool inCutscene = false;
+
     //Making the game feel more fluid stuff
     public float[] maxSpeed = {
         10, 10, 10
@@ -62,6 +64,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        if (inCutscene)
+        {
+            return;
+        }
         Jump();
         groundCheck();
         jumpImprovement();
@@ -95,7 +101,14 @@ public class PlayerController : MonoBehaviour
     //Controls player movement
     void Move()
     {
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
+        if (inCutscene)
+        {
+            inputHorizontal = 0;
+        }
+        else
+        {
+            inputHorizontal = Input.GetAxisRaw("Horizontal");
+        }
         // _rb.velocity = new Vector2(inputHorizontal * speed, _rb.velocity.y);
         //Below is Wally's movement improvements.
         switch (inputHorizontal)

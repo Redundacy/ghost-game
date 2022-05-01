@@ -7,12 +7,14 @@ public class CameraHandler : MonoBehaviour {
     public RoomData CurrentRoom;
     public GameObject Player;
     public GameObject Wizard;
-
+    
     private float xMin, xMax, yMin, yMax;
     private float camY, camX;
     private float camOrthsize;
     private float cameraRatio;
     private Camera mainCam;
+
+
 
     private void Start()
     {
@@ -62,5 +64,10 @@ public class CameraHandler : MonoBehaviour {
         camX = Mathf.Clamp(FollowTransform.position.x, CurrentRoom.OffsetX - CurrentRoom.SizeX / 2 + cameraRatio,
             CurrentRoom.OffsetX + CurrentRoom.SizeX / 2 - cameraRatio);
         this.transform.position = new Vector3(camX, camY, this.transform.position.z);
+    }
+
+    public void OnGUI()
+    {
+
     }
 }

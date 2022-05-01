@@ -90,7 +90,7 @@ public class DialogueManager : MonoBehaviour
         switch (cutsceneName)
         {
             case "OpeningDialogue2":
-                PlayerGameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8, ForceMode2D.Impulse);
+                PlayerGameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12, ForceMode2D.Impulse);
                 break;
             case "OpeningDialogue5":
                 PlayerGameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right;

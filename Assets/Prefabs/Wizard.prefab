@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1798570247
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: -8752612137704499392, guid: 162526f4e663e134fa8e0b401f33d726, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 287387141
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 3235556853635157710, guid: a8d6f7926c9cf6647a98bb6444e277db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -203,6 +203,11 @@ MonoBehaviour:
   possessedState: 1
   OutlineMaterial: {fileID: 2100000, guid: a33adf1a0d29358449d4856d11ccaaf9, type: 2}
   DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  OpenState: {fileID: 0}
+  ClosedState: {fileID: 0}
+  ConnectedGameObject: {fileID: 0}
+  CutsceneTrigger: 
+  dialogueTrigger: {fileID: 0}
 --- !u!61 &469719540684823835
 BoxCollider2D:
   m_ObjectHideFlags: 0

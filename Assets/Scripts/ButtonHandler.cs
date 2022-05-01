@@ -46,9 +46,9 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void RestartGame(string sceneName) {
-        RoomData currentRoom = Camera.GetComponent<CameraHandler>().CurrentRoom;
-        RestartHandler restartData = RestartHandler.Instance;
-        restartData.currentRoom = currentRoom;
+        // Collider2D currentRoom = Camera.GetComponent<CameraHandler>().CurrentRoom;
+        // RestartHandler restartData = RestartHandler.Instance;
+        // restartData.currentRoom = currentRoom;
         SceneManager.LoadScene(sceneName);
     }
 }

@@ -778,26 +778,29 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'You play as a ghost who is trying to pass on to the afterlife. This demo
-    takes place in the library, where you are trying to learn more about your situation
-    and how to pass on. You can possess people and they will help you get through
-    all the rooms to the end. Have fun!
+    takes place in the graveyard and the library, where you are trying to learn more
+    about your situation and how to pass on. You can possess people and they will
+    help you get through all the rooms to the end. Have fun!
 
 
     Controls:
 
-    WASD: Movement
+    WASD:
+    Movement
 
-    Space:
-    Jump
+    Space: Jump
 
     F: Possess
 
-    Left Click: Possessed Ability (throwing a book)
+    Left Click/Left Ctrl: Possessed
+    Ability (throwing a book)
+
+    E: Interacting with objects
+
+    G: Grabbing boxes
 
     Esc:
-    Toggle Menu
-
-    T: Toggle Controls'
+    Toggle Menu'
 --- !u!222 &661721844
 CanvasRenderer:
   m_ObjectHideFlags: 0

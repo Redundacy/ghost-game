@@ -211,7 +211,7 @@ TextureImporter:
     second: gdb-keyboard-2_F_1
   - first:
       213: -3484679561813312424
-    second: gdb-keyboard-2_69
+    second: gdb-keyboard-2_G_1
   - first:
       213: -91167730786750093
     second: gdb-keyboard-2_70
@@ -607,7 +607,7 @@ TextureImporter:
     second: gdb-keyboard-2_F_2
   - first:
       213: -4470888204227328812
-    second: gdb-keyboard-2_201
+    second: gdb-keyboard-2_G_2
   - first:
       213: 5130201356420272500
     second: gdb-keyboard-2_202
@@ -1012,7 +1012,7 @@ TextureImporter:
     second: gdb-keyboard-2_F_3
   - first:
       213: 2323555417704919695
-    second: gdb-keyboard-2_336
+    second: gdb-keyboard-2_G_3
   - first:
       213: -3675624850005874412
     second: gdb-keyboard-2_337
@@ -1390,7 +1390,7 @@ TextureImporter:
     second: gdb-keyboard-2_F_4
   - first:
       213: 4225858307361301631
-    second: gdb-keyboard-2_462
+    second: gdb-keyboard-2_G_4
   - first:
       213: 4223619036864762083
     second: gdb-keyboard-2_463
@@ -3454,7 +3454,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gdb-keyboard-2_69
+      name: gdb-keyboard-2_G_1
       rect:
         serializedVersion: 2
         x: 128
@@ -6226,7 +6226,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gdb-keyboard-2_201
+      name: gdb-keyboard-2_G_2
       rect:
         serializedVersion: 2
         x: 128
@@ -9061,7 +9061,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gdb-keyboard-2_336
+      name: gdb-keyboard-2_G_3
       rect:
         serializedVersion: 2
         x: 128
@@ -11707,7 +11707,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gdb-keyboard-2_462
+      name: gdb-keyboard-2_G_4
       rect:
         serializedVersion: 2
         x: 128
